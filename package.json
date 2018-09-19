@@ -1,0 +1,10 @@
+{
+    "name": "CP_Static_Site_Generator",
+    "version": "0.0.1",
+    "description": "CP Static file generator using angularjs",
+    "dependencies": {
+        "express": "^4.10.2",
+        "forever": "^0.15.3",
+        "path": "^0.12.7"
+    }
+}
