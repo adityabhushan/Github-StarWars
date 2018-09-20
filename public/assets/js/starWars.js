@@ -1,14 +1,19 @@
-(function() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            this.responseText;
-            //console.log(this.responseText)
-            makeTable(JSON.parse(this.responseText))
-        }
-    };
-    xhttp.open("GET", "https://api.github.com/search/repositories?q=javascript&sort=stars&order=desc&page=1&per_page=100", true);
-    xhttp.send();
+// (function() {
+
+    var getData = function(page){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                makeTable(JSON.parse(this.responseText))
+            }
+        };
+        var url = "https://api.github.com/search/repositories?q=javascript&sort=stars&order=desc&page="+page+"&per_page=50"
+        xhttp.open("GET",url , true);
+        xhttp.send();        
+    }
+
+    getData(1);
+    
 
     var makeTable = function(responseText) {
         var items = responseText.items
@@ -31,26 +36,23 @@
         }
     }
 
-    // var scrollTop = $(document).scrollTop();
-    // var windowHeight = $(window).height();
-    // var bodyHeight = $(document).height() - windowHeight;
-    // var scrollPercentage = (scrollTop / bodyHeight);
-    // if(scrollPercentage > 0.6) {
-    //   alert("I am scrolling")
-    // }
+    window.onscroll = function(event){
+        var scrollTop = window.scrolltop();
+        var windowHeight = window.innerHeight;
+        var body = document.body
+        var html = document.documentElement;
+        var documentHeight = Math.max( body.scrollHeight, body.offsetHeight, 
+                           html.clientHeight, html.scrollHeight, html.offsetHeight );
+        var bodyHeight = documentHeight - windowHeight;
+        var scrollPercentage = (scrollTop / bodyHeight);
 
-
-    //       $(window).on('scroll', function(){
-    //     if( $(window).scrollTop() > $(document).height() - $(window).height() ) {
-    //         alert("I am scrolling hahaha");
-    //     }
-    //     // alert("I am scrolling hahaha");
-    // }).scroll();
-
-    window.addEventListener(scroll, function(){
-      console.log(window.scrollTop)
-    })  
+        // if the scroll is more than 90% from the top, load more content.
+        if(scrollPercentage > 0.9) {
+            console.log("yup it works")
+        }
+    }
+    
 
 
 
-})()
+// })()

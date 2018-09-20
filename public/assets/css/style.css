@@ -66,8 +66,8 @@ table {
     font-size: 2em;
     text-align: center;
     text-transform: uppercase;
-    color: #212a31;
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    color: #fff;
+    /*text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;*/
     overflow: hidden;
     position: sticky;
     top:0;
