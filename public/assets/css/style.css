@@ -59,15 +59,15 @@ table {
 .header {
     padding:10px;
     grid-column: 1/4;
-    background-color: #000;
+    background-color: #212a31;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: #212a31;
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: 2em;
     text-align: center;
     text-transform: uppercase;
-    color: black;
-    text-shadow: -1px -1px 0 yellow, 1px -1px 0 yellow, -1px 1px 0 yellow, 1px 1px 0 yellow;
+    color: #212a31;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
     overflow: hidden;
     position: sticky;
     top:-15%;
