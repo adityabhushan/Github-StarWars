@@ -5,10 +5,10 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText)
                 makeTable(JSON.parse(this.responseText))
             } if(this.status == 403){
-                alert("Rate limit exceeded !!")
+                document.querySelector('.warning').style.display = 'block';
+                event.stopImmediatePropagation()
                 return;
             }
         };
@@ -27,16 +27,16 @@
             var newRow = tbody.insertRow(tbody.rows.length)
             var repo = newRow.insertCell(0);
             var desc = newRow.insertCell(1);
-            var starCount = newRow.insertCell(2);
+            // var starCount = newRow.insertCell(2);
             newRow.classList.add("trClass");
             repo.classList.add("tdClass");
             desc.classList.add("tdClass");
-            starCount.classList.add("tdClass");
+            // starCount.classList.add("tdClass");
             repo.innerHTML = '<a href=' + items[i].html_url + ' target=_blank>' + items[i].name + '</a>';
             var descText = document.createTextNode(items[i].description);
             desc.appendChild(descText);
-            var starCountText = document.createTextNode(items[i].stargazers_count);
-            starCount.appendChild(starCountText);
+            // var starCountText = document.createTextNode(items[i].stargazers_count);
+            // starCount.appendChild(starCountText);
 
         }
     }
@@ -55,8 +55,7 @@
         if(scrollPercentage > 0.8) {
             page++;
             page_size = 100;
-            getData(page, page_size);
-            console.log("page Number is "+page)
+            getData(page, page_size, event);
         }
     }
     
