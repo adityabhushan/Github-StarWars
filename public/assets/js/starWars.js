@@ -1,13 +1,18 @@
 (function() {
     var page=1;
-    var getData = function(page){
+    var page_size = 50;
+    var getData = function(page, page_size){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText)
                 makeTable(JSON.parse(this.responseText))
+            } if(this.status == 403){
+                alert("Rate limit exceeded !!")
+                return;
             }
         };
-        var url = "https://api.github.com/search/repositories?q=javascript&sort=stars&order=desc&page="+page+"&per_page=30"
+        var url = "https://api.github.com/search/repositories?q=javascript&sort=stars&order=desc&page="+page+"&per_page=page_size"
         xhttp.open("GET",url , true);
         xhttp.send();        
     }
@@ -47,9 +52,10 @@
         var scrollPercentage = (scrollTop / bodyHeight);
 
         // if the scroll is more than 90% from the top, load more content.
-        if(scrollPercentage > 0.9) {
+        if(scrollPercentage > 0.8) {
             page++;
-            getData(page);
+            page_size = 100;
+            getData(page, page_size);
             console.log("page Number is "+page)
         }
     }
