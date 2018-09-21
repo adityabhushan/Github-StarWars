@@ -1,5 +1,5 @@
-// (function() {
-
+(function() {
+    var page=1;
     var getData = function(page){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -7,12 +7,12 @@
                 makeTable(JSON.parse(this.responseText))
             }
         };
-        var url = "https://api.github.com/search/repositories?q=javascript&sort=stars&order=desc&page="+page+"&per_page=50"
+        var url = "https://api.github.com/search/repositories?q=javascript&sort=stars&order=desc&page="+page+"&per_page=30"
         xhttp.open("GET",url , true);
         xhttp.send();        
     }
 
-    getData(1);
+    getData(page);
     
 
     var makeTable = function(responseText) {
@@ -37,7 +37,7 @@
     }
 
     window.onscroll = function(event){
-        var scrollTop = window.scrolltop();
+        var scrollTop = document.documentElement.scrollTop;
         var windowHeight = window.innerHeight;
         var body = document.body
         var html = document.documentElement;
@@ -48,11 +48,11 @@
 
         // if the scroll is more than 90% from the top, load more content.
         if(scrollPercentage > 0.9) {
-            console.log("yup it works")
+            page++;
+            getData(page);
+            console.log("page Number is "+page)
         }
     }
     
 
-
-
-// })()
+})()
