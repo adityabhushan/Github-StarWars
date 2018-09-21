@@ -18,3 +18,6 @@ To use the repo
 2) `cd` into repository folder
 3) `cd` into public folder and open `index.html` with browser
 4) congratulations :)
+
+### Shortest Method
+1) [Click here](http://bhushan.co/Github-StarWars/public/)
